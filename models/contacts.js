@@ -52,12 +52,3 @@ export const updateContact = async (id, data) => {
   await updateContacts(contacts);
   return contacts[index];
 };
-
-// export default {
-//   listContacts,
-//   getContactById,
-//   removeContact,
-//   addContact,
-//   updateContact,
-// };
-
