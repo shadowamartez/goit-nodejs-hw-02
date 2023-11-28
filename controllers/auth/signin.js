@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../../models/User.js";
 import { HttpError } from "../../helpers/index.js";
+
 const {JWT_SECRET} = process.env; 
 
 const signin = async (req, res) => {
