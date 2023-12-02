@@ -3,12 +3,17 @@ import Contact from "../../models/Contact.js";
 
 const deleteById = async (req, res) => {
     const { id } = req.params;
-    const result = await Contact.findByIdAndDelete(id);
+    const {_id: owner} = req.user;
+    const result = await Contact.findOneAndDelete({_id: id, owner});
+
     if (!result) {
-        throw HttpError(404, `Not found`);
+        throw HttpError(404, `Contact with id=${id} not found`);
     }
+
+    // res.status(204).send();
+
     res.json({
-        message: "contact deleted"
+        message: "Delete success"
     })
 };
 

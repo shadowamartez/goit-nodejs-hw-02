@@ -3,10 +3,12 @@ import Contact from "../../models/Contact.js";
 
 const updateById = async (req, res) => {
     const { id } = req.params;
-    const result = await Contact.findByIdAndUpdate(id, req.body);
+    const {_id: owner} = req.user;
+    const result = await Contact.findOneAndUpdate({_id: id, owner}, req.body);
     if (!result) {
-        throw HttpError(404, `Not found`);
+        throw HttpError(404, `Contact with id=${id} not found`);
     }
+
     res.json(result);
 };
 
