@@ -34,7 +34,7 @@ const signup = async (req, res) => {
         res.status(201).json({
             username: newUser.username,
             email: newUser.email,
-            avatarURL: result.avatarURL,
+            avatarURL: newUser.avatarURL,
         });
     } catch (error) {
         console.error(error);
