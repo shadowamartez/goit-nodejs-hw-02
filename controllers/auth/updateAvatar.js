@@ -1,6 +1,8 @@
 import path from "path";
 import fs from "fs/promises";
 import User from "../../models/User.js";
+import { processAvatar } from "./index.js";
+import { tmpPath, avatarsPath } from "./signup.js"; 
 
 const updateAvatar = async (req, res) => {
     try {

@@ -5,8 +5,8 @@ import gravatar from "gravatar";
 import User from "../../models/User.js";
 import { HttpError } from "../../helpers/index.js";
 
-const avatarsPath = path.resolve("public", "avatars");
-const tmpPath = path.resolve("tmp");
+export const avatarsPath = path.resolve("public", "avatars");
+export const tmpPath = path.resolve("tmp");
 
 const signup = async (req, res) => {
     try {
