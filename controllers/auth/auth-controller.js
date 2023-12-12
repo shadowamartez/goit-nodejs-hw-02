@@ -1,5 +1,5 @@
 import { ctrlWrapper } from "../../decorators/index.js";
-import { signup, signin, getCurrent, signout, processAvatar, updateAvatar } from "./index.js";
+import { signup, signin, getCurrent, signout, processAvatar, updateAvatar, verify, resendVerify } from "./index.js";
 
 export default {
     signup: ctrlWrapper(signup),
@@ -8,4 +8,6 @@ export default {
     signout: ctrlWrapper(signout),
     processAvatar: ctrlWrapper(processAvatar),
     updateAvatar: ctrlWrapper(updateAvatar),
+    verify: ctrlWrapper(verify),
+    resendVerify: ctrlWrapper(resendVerify),
 }
