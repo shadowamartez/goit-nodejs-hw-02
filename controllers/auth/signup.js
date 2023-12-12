@@ -3,7 +3,8 @@ import path from "path";
 import bcrypt from "bcryptjs";
 import gravatar from "gravatar";
 import User from "../../models/User.js";
-import { HttpError } from "../../helpers/index.js";
+import { HttpError, sendEmail } from "../../helpers/index.js";
+import { nanoid } from "nanoid";
 
 export const avatarsPath = path.resolve("public", "avatars");
 export const tmpPath = path.resolve("tmp");
@@ -24,12 +25,21 @@ const signup = async (req, res) => {
         }
 
         const hashPassword = await bcrypt.hash(password, 10);
+        const verificationCode = nanoid();
 
         const newUser = await User.create({
             ...req.body,
             password: hashPassword,
             avatarURL,
+            verificationCode,
         });
+
+        const verifyEmail = {
+        to: email,
+        subject: "Verify email",
+        html: `<a target="_blank" href="${BASE_URL}/api/auth/verify/${verificationCode}">Click verify email</a>`
+        }
+        await sendEmail(verifyEmail);
 
         res.status(201).json({
             username: newUser.username,
